@@ -10,6 +10,7 @@ csn <- length(course.student.number)
 
 # Create a vector course.student.grade, with sample() function: x = c(55:100), size = csn
 course.student.grade <- sample(x = c(55:100), size = csn)
+course.student.grade
 
 # Assign course.student.number as names of the course.student.grade
 names(course.student.grade) <- course.student.number
@@ -26,10 +27,10 @@ csg.min <- min(course.student.grade)
 # Create a vector csg.over.80, with the logical result of course.student.grade over 80
 csg.over.80 <- course.student.grade >= 80
 
-# Check csg.over.mean
+# Check csg.over.80
 csg.over.80
 
-# Filter the course.student.grade with csg.over.mean
+# Filter the course.student.grade with csg.over.80
 course.student.grade[csg.over.80]
 
 # Print course information
