@@ -27,18 +27,43 @@ summary(iris)
 # 使用for loop 印出九九乘法表
 # Ex: (1x1=1 1x2=2...1x9=9 ~ 9x1=9 9x2=18... 9x9=81)
 
-
-for(i in c(1:9)) {
-x<-i*c(1:9)
-y<-print(x)
-data<-rbind(y)
+##-----tutor's answer------##
+for (i in 1:9){
+  for (j in 1:9){
+    cat(i, j ,sep = '\n')
+  }
 }
+
+##my verison##
+for(i in c(1:9)) {
+  x<-i*c(1:9)
+  print(x)
+
+}
+##TRY##
+m1=matrix(i,j,byrow=TRUE, nrow=9)
+m2 
+  1 2
+1 1 2 3 4
+2 1 2 3 4
+  1 2
+1 1 1 1 
+2 2 2 2
 
 
 for(i in c(1:9)) {
   x<-i*c(1:9)
-  y<-print(x)
+  print(x)
+  
 }
+
+
+
+
+#for(i in c(1:9)) {
+#  x<-i*c(1:9)
+#  y<-print(x)
+#}
 
 data<-rbind(y)
 
@@ -52,12 +77,21 @@ nums
 
 # 1.使用for loop 以及 if-else，印出大於50的偶數，並提示("偶數且大於50": 數字value)
 # 2.特別規則：若數字為66，則提示("太66666666666了")並中止迴圈。
+##origin version
 for(x in nums){
   if(x%%2==0&x>50) 
     print(paste("偶數且大於50:",x)) 
 }
  
-  
+##updated version
+for(x in nums){
+  if(x==66){
+    print("太66666666666了")
+    break
+  }
+  else if(x%%2==0&x>50) 
+    print(paste("偶數且大於50:",x)) 
+}
   
   
 
