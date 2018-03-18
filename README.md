@@ -1,6 +1,5 @@
-# R-course-2018
-NTU course
-
+# R-course-2018 NTU course
+## syntax in GitHub readme: https://help.github.com/articles/basic-writing-and-formatting-syntax/#headings
 week 1
 
 week 2
