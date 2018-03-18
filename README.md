@@ -1,7 +1,11 @@
 # R-course-2018
 NTU course
-## R course
-add information
 
-##update on 8 mar 2018
+week 1
+
+week 2
+
+
+week 3 ggplot 2
+
 
