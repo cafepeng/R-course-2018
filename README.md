@@ -17,5 +17,5 @@ week 3 data visualization
      use the dataset 'Salaries' in 'car'package
      --> once the package is required, we can directly use the dataset
      (e.g.)
-       library(car)
-       str(Salaries)
+       *library(car)
+       *str(Salaries)
