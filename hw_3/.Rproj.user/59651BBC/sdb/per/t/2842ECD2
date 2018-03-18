@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#install.packages(\"car\")\nlibrary(car)\ndata01<-data.frame(Salaries)\n\n#data source : https://www.rdocumentation.org/packages/car/versions/2.1-6/topics/Salaries\n##The 2008-09 nine-month academic salary for Assistant Professors, Associate Professors and Professors in a college in the U.S. \n##The data were collected as part of the on-going effort of the college's administration to monitor salary differences between male and female faculty members.\n\n#variable types:\n## rank: a factor with levels-- AssocProf, AsstProf, Prof\n##discipline:a factor with levels A (``theoretical'' departments) or B (``applied'' departments).\n##yrs.since.phd: years since PhD\n##yrs.service: years of service.\n##sex: a factor with levels Female Male\n##salary: nine-month salary, in dollars.\n\n\n#basic info\nstr(data01)\ndim(data01)\nsummary(data01)\nsummary(data01$rank)\nsummary(data01$salary)\nsummary(data01$sex)\n\n#load the packages needed for data visualization\nlibrary(ggplot2)\nlibrary(dplyr)\n\n\n#1.if income increases as the year of service increases? \n##note:alpha refers to the degree of transparancy so that the points would not block other points\npic1<-ggplot(data01)+geom_point(mapping=aes(x=yrs.service,y=salary),alpha=1/2,color=\"blue\",size=5)\npic1\nggsave(filename=\"pic1.pdf\",plot=pic1)\n\n##Finding: as years of service increases, the salaries increase as well\n\n\n#2.is there a difference in salaries between males and females overall?\n## add another aesthetic measure \"sex\"\npic2<-ggplot(data01)+geom_point(mapping=aes(x=yrs.service,y=salary,color=sex),alpha=1/2,size=5)\npic2\nggsave(filename=\"pic2.pdf\",plot=pic2)\n## Findings: it seems that the salary range is relatively limited to females\n\n#3_1. following Q2, is it possible that the difference btw males and females gets larger in higher income range(e.g. higher than Q3)?\npic3_1<-ggplot(data01)+geom_point(mapping=aes(x=yrs.service,y=salary>134185,color=sex),alpha=1/2,size=5)\npic3_1\n\nggsave(filename=\"pic3_1.pdf\",plot=pic3_1)\n\n##finding: due to the relative small sample of female, this picture is relatively meaningless\n\n#3_2.Use facet setting to draw two diagrams that represents females and males seperately\npic3_2<-ggplot(data01)+geom_point(mapping=aes(x=yrs.service,y=salary),color=\"blue\",alpha=1/2,size=5)+\n         facet_wrap(~sex)\npic3_2\n#save the pic by using \"ggsave\"\nggsave(filename=\"pic3_2.pdf\", plot=pic3_2)\n\n#4_1.Does the salary differs in terms of ranks?\npic4_1<-ggplot(data01,mapping=aes(x=yrs.service,y=salary))+\n  geom_point(\n      mapping=aes(color=rank),alpha=1/2,size=5)+\n  geom_smooth(\n      mapping=aes(color=rank))\npic4_1\n\nggsave(filename=\"pic4_1.pdf\",plot=pic4_1)\n\n##Finding: higher the rank, higher the variance in salaries\n\n\n\n#take a closer look at the highest rank \"professor\" by plotting its line only\npic4_2<-ggplot(data01,mapping=aes(x=yrs.service,y=salary))+\n  geom_point(\n     mapping=aes(color=rank),alpha=1/2,size=5)+\n  geom_smooth(\n     data=filter(data01,rank==\"Prof\"),\n     se=FALSE\n     )\npic4_2\n\nggsave(filename=\"pic4_2.pdf\",plot=pic4_2)\n\n##Finding: higher the rank, highe the range in salaries",
+    "created" : 1521296926917.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1012691267",
+    "id" : "2842ECD2",
+    "lastKnownWriteTime" : 1521362553,
+    "last_content_update" : 1521362553792,
+    "path" : "D:/GitHub/R-course-2018/hw_3/hw_3.R",
+    "project_path" : "hw_3.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}

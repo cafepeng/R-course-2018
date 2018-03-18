@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "## chap 1 in \"R for data science\"\n#install.packages(\"tidyverse\")\n\n#problems solved: cf.https://stackoverflow.com/questions/31717850/error-package-or-namespace-load-failed-for-ggplot2-and-for-data-table\n##errors shown after installation of tidyverse and ggplot\n##soluation: (1)update the R version to the latest R3.4.4\n##(2)remove the initial instation: remove.packages(\"ggplot2\") \n##(3)reinstall it again: install.packages(\"ggplot2\",dependencies=TRUE)\n\n\nlibrary(tidyverse)\nlibrary(ggplot2)\nmpg01<-data.frame(mpg)\nhead(mpg)\ndim(mpg)\nhead(mpg)\n\n##---- examples from book: R for data science (p3~)----##\n## use displ as x axis, hwy as y axis, adjust the plot points with color by 'class', and plot size by 'year'\nggplot(data=mpg01)+geom_point(mapping=aes(x=displ,y=hwy,color=class,size=year))\n\n## alpha controls the transparancy\nggplot(data=mpg01)+geom_point(mapping=aes(x=displ,y=hwy,alpha=class,size=year))\n##shape controls the shape of points\nggplot(data=mpg01)+geom_point(mapping=aes(x=displ,y=hwy,shape=class))\n\n## add aesthetic manually -- add a argument outside the aes()\nggplot(data=mpg01)+geom_point(mapping=aes(x=displ,y=hwy),color=\"blue\",size=4,shape=15)\n                    \n## add conditional argument in aes(),which specifies the cars 'before 2000'(TRUE) and 'after 2000'(FALSE)\nggplot(data=mpg01)+geom_point(mapping=aes(x=displ,y=hwy,color=year<2000),size=4,shape=15)\n\n## facet for 1 categorical variable\nggplot(data=mpg01)+geom_point(mapping=aes(x=displ,y=hwy))+facet_wrap(~class,nrow=2)\n## facet for 2 categorical variables                            \nggplot(data=mpg01)+geom_point(mapping=aes(x=displ,y=hwy))+facet_grid(drv~cyl)\n\n\n#-----geometric objects------##\nggplot(data=mpg01)+geom_point(mapping=aes(x=displ,y=hwy))\n\n#smoothing conditional means: geom_smooth#\nggplot(data=mpg01)+geom_smooth(mapping=aes(x=displ,y=hwy,linetype=drv))\n#geom_smooth with raw data points & conditional mean areas#\nggplot(data=mpg01)+geom_point(mapping=aes(x=displ,y=hwy,color=drv))+geom_smooth(mapping=aes(x=displ,y=hwy,linetype=drv))\n\n##global setting: the above one is equivalent to the following one##\nggplot(data=mpg01,mapping=aes(x=displ,y=hwy))+geom_point(mapping=aes(color=drv))+geom_smooth(mapping=aes(linetype=drv))\n\n## global setting with local difference in geom: cf p.20##\nlibrary(dplyr)\nggplot(data=mpg01,mapping=aes(x=displ,y=hwy))+geom_point(mapping=aes(color=class))+geom_smooth(data=filter(mpg01,class==\"subcompact\"),se=FALSE)\n\n\n",
+    "created" : 1521297473436.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3873369860",
+    "id" : "2A1B5C9C",
+    "lastKnownWriteTime" : 1521297518,
+    "last_content_update" : 1521297518784,
+    "path" : "D:/GitHub/R-course-2018/e_practice in ggplot2/practice in ggplot2.R",
+    "project_path" : "practice in ggplot2.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}

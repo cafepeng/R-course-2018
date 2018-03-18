@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "---\noutput:\n  html_document: default\n  pdf_document: default\n---\n---\ntitle: 'ggplot2 application (car:: Salaries)'\nauthor: \"cafepeng\"\ndate: \"2018年3月18日\"\noutput: html_document\nhelpful link: [https://support.zendesk.com/hc/en-us/articles/203691016-Formatting-text-with-Markdown#topic_xqx_mvc_43__row_tf4_bmn_1n]\n-------------------------\n**Dataset:**\n\n> The 2008-09 nine-month academic salary for Assistant Professors, Associate Professors and Professors in a college in the U.S. \nThe data were collected as part of the on-going effort of the college's administration to monitor salary differences between male and female faculty members.\n\n* Variables:\n    * rank: AssocProf, AsstProf, Prof\n    * discipline:a factor with levels A (`theoretical')or B ('applied' departments)\n    * yrs.since.phd: years since PhD\n    * yrs.service: years of service\n    * sex: a factor with levels Female Male\n    * salary: nine-month salary, in dollars\n\n\n1. pull the dataset \"Salaries\" from 'car' package, and check the structure and so on.\n```{r}\nlibrary(car)\ndata01<-data.frame(Salaries)\nstr(data01)\ndim(data01)\nsummary(data01)\n\n#especially check the variables I am interested in\nsummary(data01$rank)\nsummary(data01$salary)\nsummary(data01$sex)\n\n```\n\n\n* **Q1. If income increases as the year of service increases? **\n```{r}\n#Load the packages needed for data visualization (note: eval=FALSE prevents code from being evaluated)\nlibrary(ggplot2)\n#note: alpha refers to the degree of transparancy so that the points would not block other points\npic1<-ggplot(data01)+geom_point(mapping=aes(x=yrs.service,y=salary),alpha=1/2,color=\"blue\",size=5)\npic1\n\n```\n\n**Q1 Finding: as years of service increases, the salaries increase as well**\n\n\n* **Q2.is there a difference in salaries between males and females overall?**\n```{r}\n# add another aesthetic measure \"sex\"\nlibrary(ggplot2)\npic2<-ggplot(data01)+geom_point(mapping=aes(x=yrs.service,y=salary,color=sex),alpha=1/2,size=5)\npic2\n```\n\n**Q2 Findings: it seems that the salary range is relatively limited to females**\n\n* **Q3_1. following Q2, is it possible that the difference btw males and females gets larger in higher income range(e.g. higher than Q3)?**\n```{r}\nlibrary(ggplot2)\npic3_1<-ggplot(data01)+geom_point(mapping=aes(x=yrs.service,y=salary>134185,color=sex),alpha=1/2,size=5)\npic3_1\n```\n\n**Q3-1 Finding: due to the relative small sample of female, this picture is relatively meaningless**\n\n\n* **Q3_2.Use \"facet\"\" setting to draw two diagrams that represents females and males seperately**\n```{r}\nlibrary(ggplot2)\npic3_2<-ggplot(data01)+geom_point(mapping=aes(x=yrs.service,y=salary),color=\"blue\",alpha=1/2,size=5)+facet_wrap(~sex)\npic3_2\n```\n\n**Q3_2 Finding: females' salary range tends to be relatively limited compared to males**\n\n* **4_1.Does the salary differs in terms of ranks?**\n```{r}\nlibrary(ggplot2)\npic4_1<-ggplot(data01,mapping=aes(x=yrs.service,y=salary))+\n  geom_point(\n      mapping=aes(color=rank),alpha=1/2,size=5)+\n  geom_smooth(\n      mapping=aes(color=rank))\npic4_1\n```\n\n**Q4_1 Finding: higher the rank, higher the variance in salaries**\n\n*Note: we can use the command 'ggsave' to save the diagram. `ggsave(filename=\"pic4_1.pdf\",plot=pic4_1)`*\n\n\n* **Q4_2: Take a closer look at the highest rank \"professor\" by plotting its line only**\n\n```{r}\nlibrary(ggplot2)\nrequire(dplyr) # filter is part of dplyr package\npic4_2<-ggplot(data01,mapping=aes(x=yrs.service,y=salary))+geom_point(mapping=aes(color=rank),alpha=1/2,size=5)+geom_smooth(data=filter(data01,rank==\"Prof\"), se=FALSE)\npic4_2\n```\n\n**Q4_2 Finding: higher the rank, highe the range in salaries**\n",
+    "created" : 1521355334434.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3881478211",
+    "id" : "AD26F757",
+    "lastKnownWriteTime" : 1521362449,
+    "last_content_update" : 1521362449267,
+    "path" : "D:/GitHub/R-course-2018/hw_3/hw_3.Rmd",
+    "project_path" : "hw_3.Rmd",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

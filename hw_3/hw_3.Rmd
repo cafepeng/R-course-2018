@@ -1,0 +1,110 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+---
+title: 'ggplot2 application (car:: Salaries)'
+author: "cafepeng"
+date: "2018年3月18日"
+output: html_document
+helpful link: [https://support.zendesk.com/hc/en-us/articles/203691016-Formatting-text-with-Markdown#topic_xqx_mvc_43__row_tf4_bmn_1n]
+-------------------------
+**Dataset:**
+
+> The 2008-09 nine-month academic salary for Assistant Professors, Associate Professors and Professors in a college in the U.S. 
+The data were collected as part of the on-going effort of the college's administration to monitor salary differences between male and female faculty members.
+
+* Variables:
+    * rank: AssocProf, AsstProf, Prof
+    * discipline:a factor with levels A (`theoretical')or B ('applied' departments)
+    * yrs.since.phd: years since PhD
+    * yrs.service: years of service
+    * sex: a factor with levels Female Male
+    * salary: nine-month salary, in dollars
+
+
+1. pull the dataset "Salaries" from 'car' package, and check the structure and so on.
+```{r}
+library(car)
+data01<-data.frame(Salaries)
+str(data01)
+dim(data01)
+summary(data01)
+
+#especially check the variables I am interested in
+summary(data01$rank)
+summary(data01$salary)
+summary(data01$sex)
+
+```
+
+
+* **Q1. If income increases as the year of service increases? **
+```{r}
+#Load the packages needed for data visualization (note: eval=FALSE prevents code from being evaluated)
+library(ggplot2)
+#note: alpha refers to the degree of transparancy so that the points would not block other points
+pic1<-ggplot(data01)+geom_point(mapping=aes(x=yrs.service,y=salary),alpha=1/2,color="blue",size=5)
+pic1
+
+```
+
+**Q1 Finding: as years of service increases, the salaries increase as well**
+
+
+* **Q2.is there a difference in salaries between males and females overall?**
+```{r}
+# add another aesthetic measure "sex"
+library(ggplot2)
+pic2<-ggplot(data01)+geom_point(mapping=aes(x=yrs.service,y=salary,color=sex),alpha=1/2,size=5)
+pic2
+```
+
+**Q2 Findings: it seems that the salary range is relatively limited to females**
+
+* **Q3_1. following Q2, is it possible that the difference btw males and females gets larger in higher income range(e.g. higher than Q3)?**
+```{r}
+library(ggplot2)
+pic3_1<-ggplot(data01)+geom_point(mapping=aes(x=yrs.service,y=salary>134185,color=sex),alpha=1/2,size=5)
+pic3_1
+```
+
+**Q3-1 Finding: due to the relative small sample of female, this picture is relatively meaningless**
+
+
+* **Q3_2.Use "facet"" setting to draw two diagrams that represents females and males seperately**
+```{r}
+library(ggplot2)
+pic3_2<-ggplot(data01)+geom_point(mapping=aes(x=yrs.service,y=salary),color="blue",alpha=1/2,size=5)+facet_wrap(~sex)
+pic3_2
+```
+
+**Q3_2 Finding: females' salary range tends to be relatively limited compared to males**
+
+* **4_1.Does the salary differs in terms of ranks?**
+```{r}
+library(ggplot2)
+pic4_1<-ggplot(data01,mapping=aes(x=yrs.service,y=salary))+
+  geom_point(
+      mapping=aes(color=rank),alpha=1/2,size=5)+
+  geom_smooth(
+      mapping=aes(color=rank))
+pic4_1
+```
+
+**Q4_1 Finding: higher the rank, higher the variance in salaries**
+
+*Note: we can use the command 'ggsave' to save the diagram. `ggsave(filename="pic4_1.pdf",plot=pic4_1)`*
+
+
+* **Q4_2: Take a closer look at the highest rank "professor" by plotting its line only**
+
+```{r}
+library(ggplot2)
+require(dplyr) # filter is part of dplyr package
+pic4_2<-ggplot(data01,mapping=aes(x=yrs.service,y=salary))+geom_point(mapping=aes(color=rank),alpha=1/2,size=5)+geom_smooth(data=filter(data01,rank=="Prof"), se=FALSE)
+pic4_2
+```
+
+**Q4_2 Finding: higher the rank, highe the range in salaries**

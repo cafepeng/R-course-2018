@@ -1,0 +1,433 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{{#1}}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{}
+  \pretitle{\vspace{\droptitle}}
+  \posttitle{}
+  \author{}
+  \preauthor{}\postauthor{}
+  \date{}
+  \predate{}\postdate{}
+
+
+\begin{document}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+title: `ggplot2 application (car:: Salaries)'\tabularnewline
+author: ``cafepeng''\tabularnewline
+date: ``2018年3月18日''\tabularnewline
+output: html\_document\tabularnewline
+helpful link:
+{[}\url{https://support.zendesk.com/hc/en-us/articles/203691016-Formatting-text-with-Markdown\#topic_xqx_mvc_43__row_tf4_bmn_1n}{]}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\textbf{Dataset:}
+
+\begin{quote}
+The 2008-09 nine-month academic salary for Assistant Professors,
+Associate Professors and Professors in a college in the U.S. The data
+were collected as part of the on-going effort of the college's
+administration to monitor salary differences between male and female
+faculty members.
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Variables:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    rank: AssocProf, AsstProf, Prof
+  \item
+    discipline:a factor with levels A (`theoretical')or B (`applied'
+    departments)
+  \item
+    yrs.since.phd: years since PhD
+  \item
+    yrs.service: years of service
+  \item
+    sex: a factor with levels Female Male
+  \item
+    salary: nine-month salary, in dollars
+  \end{itemize}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  pull the dataset ``Salaries'' from `car' package, and check the
+  structure and so on.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(car)}
+\NormalTok{data01<-}\KeywordTok{data.frame}\NormalTok{(Salaries)}
+\KeywordTok{str}\NormalTok{(data01)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    397 obs. of  6 variables:
+##  $ rank         : Factor w/ 3 levels "AsstProf","AssocProf",..: 3 3 1 3 3 2 3 3 3 3 ...
+##  $ discipline   : Factor w/ 2 levels "A","B": 2 2 2 2 2 2 2 2 2 2 ...
+##  $ yrs.since.phd: int  19 20 4 45 40 6 30 45 21 18 ...
+##  $ yrs.service  : int  18 16 3 39 41 6 23 45 20 18 ...
+##  $ sex          : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 2 2 2 1 ...
+##  $ salary       : int  139750 173200 79750 115000 141500 97000 175000 147765 119250 129000 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(data01)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 397   6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(data01)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         rank     discipline yrs.since.phd    yrs.service        sex     
+##  AsstProf : 67   A:181      Min.   : 1.00   Min.   : 0.00   Female: 39  
+##  AssocProf: 64   B:216      1st Qu.:12.00   1st Qu.: 7.00   Male  :358  
+##  Prof     :266              Median :21.00   Median :16.00               
+##                             Mean   :22.31   Mean   :17.61               
+##                             3rd Qu.:32.00   3rd Qu.:27.00               
+##                             Max.   :56.00   Max.   :60.00               
+##      salary      
+##  Min.   : 57800  
+##  1st Qu.: 91000  
+##  Median :107300  
+##  Mean   :113706  
+##  3rd Qu.:134185  
+##  Max.   :231545
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#especially check the variables I am interested in}
+\KeywordTok{summary}\NormalTok{(data01$rank)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  AsstProf AssocProf      Prof 
+##        67        64       266
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(data01$salary)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   57800   91000  107300  113706  134185  231545
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(data01$sex)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Female   Male 
+##     39    358
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Q1. If income increases as the year of service increases? }
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Load the packages needed for data visualization (note: eval=FALSE prevents code from being evaluated)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\CommentTok{#note: alpha refers to the degree of transparancy so that the points would not block other points}
+\NormalTok{pic1<-}\KeywordTok{ggplot}\NormalTok{(data01)+}\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping=}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{yrs.service,}\DataTypeTok{y=}\NormalTok{salary),}\DataTypeTok{alpha=}\DecValTok{1}\NormalTok{/}\DecValTok{2}\NormalTok{,}\DataTypeTok{color=}\StringTok{"blue"}\NormalTok{,}\DataTypeTok{size=}\DecValTok{5}\NormalTok{)}
+\NormalTok{pic1}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{hw_3_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{itemize}
+\item
+  \textbf{Q1 Finding: as years of service increases, the salaries
+  increase as well}
+\item
+  \textbf{Q2.is there a difference in salaries between males and females
+  overall?}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# add another aesthetic measure "sex"}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\NormalTok{pic2<-}\KeywordTok{ggplot}\NormalTok{(data01)+}\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping=}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{yrs.service,}\DataTypeTok{y=}\NormalTok{salary,}\DataTypeTok{color=}\NormalTok{sex),}\DataTypeTok{alpha=}\DecValTok{1}\NormalTok{/}\DecValTok{2}\NormalTok{,}\DataTypeTok{size=}\DecValTok{5}\NormalTok{)}
+\NormalTok{pic2}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{hw_3_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{itemize}
+\item
+  \textbf{Q2 Findings: it seems that the salary range is relatively
+  limited to females}
+\item
+  \textbf{Q3\_1. following Q2, is it possible that the difference btw
+  males and females gets larger in higher income range(e.g.~higher than
+  Q3)?}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\NormalTok{pic3_1<-}\KeywordTok{ggplot}\NormalTok{(data01)+}\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping=}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{yrs.service,}\DataTypeTok{y=}\NormalTok{salary>}\DecValTok{134185}\NormalTok{,}\DataTypeTok{color=}\NormalTok{sex),}\DataTypeTok{alpha=}\DecValTok{1}\NormalTok{/}\DecValTok{2}\NormalTok{,}\DataTypeTok{size=}\DecValTok{5}\NormalTok{)}
+\NormalTok{pic3_1}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{hw_3_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{itemize}
+\item
+  \textbf{Q3-1 Finding: due to the relative small sample of female, this
+  picture is relatively meaningless}
+\item
+  \textbf{Q3\_2.Use ``facet''" setting to draw two diagrams that
+  represents females and males seperately}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\NormalTok{pic3_2<-}\KeywordTok{ggplot}\NormalTok{(data01)+}\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping=}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{yrs.service,}\DataTypeTok{y=}\NormalTok{salary),}\DataTypeTok{color=}\StringTok{"blue"}\NormalTok{,}\DataTypeTok{alpha=}\DecValTok{1}\NormalTok{/}\DecValTok{2}\NormalTok{,}\DataTypeTok{size=}\DecValTok{5}\NormalTok{)+}\KeywordTok{facet_wrap}\NormalTok{(~sex)}
+\NormalTok{pic3_2}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{hw_3_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{itemize}
+\item
+  \textbf{Q3\_2 Finding: females' salary range tends to be relatively
+  limited compared to males}
+\item
+  \textbf{4\_1.Does the salary differs in terms of ranks?}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\NormalTok{pic4_1<-}\KeywordTok{ggplot}\NormalTok{(data01,}\DataTypeTok{mapping=}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{yrs.service,}\DataTypeTok{y=}\NormalTok{salary))+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}
+      \DataTypeTok{mapping=}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color=}\NormalTok{rank),}\DataTypeTok{alpha=}\DecValTok{1}\NormalTok{/}\DecValTok{2}\NormalTok{,}\DataTypeTok{size=}\DecValTok{5}\NormalTok{)+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}
+      \DataTypeTok{mapping=}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color=}\NormalTok{rank))}
+\NormalTok{pic4_1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'loess'
+\end{verbatim}
+
+\includegraphics{hw_3_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Q4\_1 Finding: higher the rank, higher the variance in
+  salaries}
+\end{itemize}
+
+\emph{Note: we can use the command `ggsave' to save the diagram.
+\texttt{ggsave(filename="pic4\_1.pdf",plot=pic4\_1)}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Q4\_2: Take a closer look at the highest rank ``professor'' by
+  plotting its line only}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{require}\NormalTok{(dplyr) }\CommentTok{# filter is part of dplyr package}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: dplyr
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:car':
+## 
+##     recode
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pic4_2<-}\KeywordTok{ggplot}\NormalTok{(data01,}\DataTypeTok{mapping=}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{yrs.service,}\DataTypeTok{y=}\NormalTok{salary))+}\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping=}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color=}\NormalTok{rank),}\DataTypeTok{alpha=}\DecValTok{1}\NormalTok{/}\DecValTok{2}\NormalTok{,}\DataTypeTok{size=}\DecValTok{5}\NormalTok{)+}\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{data=}\KeywordTok{filter}\NormalTok{(data01,rank==}\StringTok{"Prof"}\NormalTok{), }\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{)}
+\NormalTok{pic4_2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'loess'
+\end{verbatim}
+
+\includegraphics{hw_3_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\textbf{Q4\_2 Finding: higher the rank, highe the range in salaries}
+
+
+\end{document}
