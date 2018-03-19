@@ -1,6 +1,7 @@
 # R-course-2018 NTU course
 ## syntax in GitHub readme: 
 > https://help.github.com/articles/basic-writing-and-formatting-syntax/#headings
+> https://github.com/emn178/markdown#this-is-an-h1
 
 week 1
 
