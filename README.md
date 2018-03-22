@@ -23,3 +23,4 @@ week 2
 #### >str(Salaries)
 
 > 成果: https://cafepeng.github.io/R-course-2018/hw_3/hw_3.html
+### in R-Course 2018, settings ,branch , a link would pop up, just further specify the link (e.g. R
