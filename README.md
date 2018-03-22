@@ -21,3 +21,5 @@ week 2
 #### (e.g.)
 #### >library(car)
 #### >str(Salaries)
+
+> 成果: https://cafepeng.github.io/R-course-2018/hw_3/hw_3.html
