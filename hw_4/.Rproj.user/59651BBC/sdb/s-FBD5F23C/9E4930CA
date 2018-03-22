@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : ".httr-oauth\n",
+    "created" : 1521690861836.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1831386015",
+    "id" : "9E4930CA",
+    "lastKnownWriteTime" : 1521585694,
+    "last_content_update" : 1521585694,
+    "path" : "D:/GitHub/R-course-2018/course week_4/course_4/.gitignore",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "gitignore"
+}
