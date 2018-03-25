@@ -11,3 +11,4 @@ title<-html_text(title)
 #若文字出現亂碼，將格式改為可辨識的形式
 title<-iconv(title,"UTF-8")
 title
+class(title)

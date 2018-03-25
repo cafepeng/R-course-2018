@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1521962279605.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "AB39E259",
+    "lastKnownWriteTime" : 13229564426780720,
+    "last_content_update" : 1521962279605,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "id" : "81f032f2a19049d4a68b3276fece756d",
+        "name" : "posts03",
+        "title" : "posts03"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "object_explorer"
+}

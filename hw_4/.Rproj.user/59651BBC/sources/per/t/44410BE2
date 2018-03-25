@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1521961513796.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1200549126",
+    "id" : "44410BE2",
+    "lastKnownWriteTime" : 1521964801,
+    "last_content_update" : 1521964801595,
+    "path" : "D:/GitHub/R-course-2018/course week_4/course_4/example_2_facebookApi_myprac_2.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "32,0",
+        "scrollLine" : "20",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

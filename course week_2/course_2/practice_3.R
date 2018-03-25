@@ -17,6 +17,11 @@ raw.titles <- res %>% html_nodes("div.title")
 # Extract link
 nba.article.link <- raw.titles %>% html_node("a") %>% html_attr('href')
 
+## in a more detailed way
+#a1<-html_node(raw.titles,"a")
+#a2<-html_attr(a1,"href")
+
+
 # Extract article
 nba.article.title <- raw.titles %>% html_text()
 
