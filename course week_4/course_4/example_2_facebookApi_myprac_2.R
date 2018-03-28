@@ -25,13 +25,29 @@ class(posts03)
 posts04 <- data.frame(matrix(unlist(posts03), nrow=23, byrow=T))
 
 colnames(posts04) <- c("message","id")
-
-
-
+class(posts04)
+posts05<-data.frame(posts04[,1])
 
 
 #stack the data every two columns
-require(stats)
+#require(stats)
 #posts05<-stack(posts04)                    # now put it back together
 #posts05<-stack(posts04, select = -"id")    # omitting one vector
+
+##--------------word cloud------------##
+library(NLP)
+library(tm)
+library(jiebaRD)
+library(jiebaR)
+library(RColorBrewer)
+library(wordcloud)
+
+#first convert dataframe into VectorSource
+posts06 <- Corpus(VectorSource(posts05))
+
+posts06 <- tm_map(posts06, removePunctuation)
+posts06 <- tm_map(posts06, removeNumbers)
+posts06 <- tm_map(posts06, stripWhitespace)
+
+
 

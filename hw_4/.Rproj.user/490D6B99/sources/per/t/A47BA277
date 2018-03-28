@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1522224906397.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A47BA277",
+    "lastKnownWriteTime" : 12948304202498162,
+    "last_content_update" : 1522224906397,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "id" : "364ea405efd14ad89ca0c2074ca05dc5",
+        "name" : "doc02",
+        "title" : "doc02"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "object_explorer"
+}
