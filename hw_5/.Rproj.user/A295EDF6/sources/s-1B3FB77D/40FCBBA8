@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1522295064737.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "40FCBBA8",
+    "lastKnownWriteTime" : 1522082268,
+    "last_content_update" : 1522082268,
+    "path" : "D:/GitHub/R-course-2018/course week_5/task_5/TFIDF.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "16,32",
+        "scrollLine" : "9"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
