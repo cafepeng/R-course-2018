@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "text<-c(\"Because I could not stop for Death\",\n        \"He kindly stopped for me\",\n        \"The Carriage held but just Ourselves\",\n        \"and Immortality\")\ntext\nclass(text)\n\nlibrary(dplyr)\ntext_df<-data.frame(line=1:4,text=text)\n\n\n",
+    "created" : 1522465078034.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "587069276",
+    "id" : "997D6524",
+    "lastKnownWriteTime" : 13229564426780720,
+    "last_content_update" : 1522506628258,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
