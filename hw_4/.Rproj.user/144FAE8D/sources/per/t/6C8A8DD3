@@ -1,21 +1,21 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1522565966122.000,
+    "created" : 1522994397262.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1491344643",
-    "id" : "57BB7D45",
-    "lastKnownWriteTime" : 1522463969,
-    "last_content_update" : 1522463969,
+    "hash" : "3742468255",
+    "id" : "6C8A8DD3",
+    "lastKnownWriteTime" : 1523007448,
+    "last_content_update" : 1523007448739,
     "path" : "D:/GitHub/R-course-2018/hw_4/hw_4_facebook.R",
     "project_path" : "hw_4_facebook.R",
     "properties" : {
-        "cursorPosition" : "72,17",
-        "scrollLine" : "65"
+        "cursorPosition" : "321,0",
+        "scrollLine" : "262"
     },
-    "relative_order" : 2,
+    "relative_order" : 1,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"

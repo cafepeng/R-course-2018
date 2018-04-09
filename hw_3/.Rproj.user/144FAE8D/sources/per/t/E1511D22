@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1522571096692.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1012691267",
+    "id" : "E1511D22",
+    "lastKnownWriteTime" : 1522463969,
+    "last_content_update" : 1522463969,
+    "path" : "D:/GitHub/R-course-2018/hw_3/hw_3.R",
+    "project_path" : "hw_3.R",
+    "properties" : {
+        "cursorPosition" : "87,55",
+        "scrollLine" : "75"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1522994617245.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1449385584",
+    "id" : "EC636AAA",
+    "lastKnownWriteTime" : 1522994317,
+    "last_content_update" : 1522994317,
+    "path" : "D:/GitHub/R-course-2018/hw_5/hw_5_facebook_tfidf.R",
+    "project_path" : "hw_5_facebook_tfidf.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

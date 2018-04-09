@@ -83,7 +83,7 @@ set.seed(1234)
 wordcloud(words=d$word,freq=d$freq,min.freq=2,max.words = 200,random.order = FALSE,
           rot.per = 0.35,colors=brewer.pal(8,"Dark2"))
 
-#@@@@@----4 apr 18 get more data for tf-idf (week5)-----@@@@@#
+#----4 apr 18-----#
 library(Rfacebook)
 library(NLP)
 library(dplyr)
@@ -97,9 +97,7 @@ page040418<-getPage(page.id,token, n=300)
 doc040418<-Corpus(VectorSource(page040418$message))
 inspect(doc040418[1:3])
 inspect(doc01[1:3])
-##Finding: 後來發現，由於po文更新慢，因此這一筆資料與前一筆資料高度重複
-
-##------------5 apr 18 add data to tf-idf ---------------##
+##------------5 apr 18---------------##
 library(Rfacebook)
 library(NLP)
 library(dplyr)
@@ -109,12 +107,10 @@ library(RColorBrewer)
 page.id<-"22092443056"
 token<-"EAACEdEose0cBAHpZAi3VjTfdVbkSP0MvELuojsyU6SGeLMevH4iYrMEZAdVQ5xZC5Jhuv0cjaFwOJTlhFgWzRUhFXLETC6CJg180L27DggeLHPUdh37U8xmWjuQpjmYfJkn8YIwvyG1jdMEtvKxeQSZAGPBiEZC9LK8AnjDtSlZCCwin0Nie2PR5VTU8e1JyMZD"
 page050418<-getPage(page.id,token, n=500)
-#note: 抓了500筆
 
 doc050418<-Corpus(VectorSource(page050418$message))
 inspect(doc050418)
 
-##@@@@ -------5 april 18 --- try to run tf-idf -------@@@@###
 ## combine three pages first as data.frame##
 str(page050418)
 page050418_300<-page050418[c(1:300),]
@@ -179,16 +175,11 @@ inspect(final_clean[2]) #check the 2nd one (i.e.040418)
 class(final_clean) # a corpus
 tdm<-TermDocumentMatrix(final_clean)
 tdm_matrix<-as.matrix(tdm)
-##FINDING: "原本"全部的terms，若出現在第一天、第二天的，次數都一樣；
-##而且出現在第一天、第二天，就不會出現在第三天
-##KEY-->BECAUSE po 文更新很慢，因此重複率很高，因此結果很奇怪
 
 
 #directly convert corpus into TDM with tf-idf
 tdm_tfidf<-TermDocumentMatrix(final_clean,control=list(weighting=function(x) weightTfIdf(x,normalize = FALSE)))
 tdm_tfidf_matrix<-as.matrix(tdm_tfidf)
-
-##Finding: 第一天與第二天的資料相同，但第三天很多空白
 
 tdm_tfidf_try<-dissimilarity(final_clean, method="cosine")
 #tdm_try<-TermDocumentMatrix(final_cor)
@@ -198,124 +189,3 @@ tdm_tfidf_try<-dissimilarity(final_clean, method="cosine")
 class(tdm_matrix)
 colSums(tdm_matrix)
 order(rowSums(tdm_matrix))
-
-##---------------6 april 2018 tf-idf 終於啊!!!------------------------##
-library(Rfacebook)
-library(NLP)
-library(dplyr)
-library(tm)
-library(RColorBrewer)
-
-page.id<-"22092443056"
-token<-"EAACEdEose0cBAPuln75HTlnVLjDZAWOTkNhcbeBjLWZAUuL9cnaCq6pNg1gclg8y5rnlZBmnUYUh3FynrnYdoWcqhCG1wSom4CCVQbJrfwK96viZCfD2KHZAZAMridm2YluQCZCirBGgyMkC8U2Nv1xi9JMWnAx9d9V4Ke2BCRsqR8ZCle0O3T993gUGm4VMBaoZD"
-page060418<-getPage(page.id,token, n=1000)
-#page060418 is a dataframe
-
-# first combine three data.frame as one data.frame
-final02<-data.frame(apr03=page$message,apr05=page050418[201:500,]$message,apr06=page060418[501:800,]$message,stringsAsFactors = FALSE)
-class(final02)
-head(final02)
-
-## then convert this dataset into VectorSource, then Corpus##
-#final_vec02<-DataframeSource(doc_id = c(page,page040418,page060418),text = c(page$message,page040418$message,page060418$message))
-
-final_vec02<-VectorSource(final02) # cant use 'dataframesource', still don't know why
-final_cor02<-Corpus(final_vec02)
-inspect(final_cor02)
-
-
-#final_cor02 <- Corpus(DataframeSource(final02))  #DONT WORK
-
-
-## clean data step by step
-final_clean02<-tm_map(final_cor02,removePunctuation,ucp=TRUE)
-final_clean02<-tm_map(final_clean02,stripWhitespace)
-final_clean02<-tm_map(final_clean02,removeNumbers)
-final_clean02<-tm_map(final_clean02,removeWords,stopwords("english"))
-final_clean02<-tm_map(final_clean02,content_transformer(tolower))
-class(final_clean02)
-
-##try tospace, it works
-final_clean02<-tm_map(final_clean02,toSpace,"-")
-final_clean02<-tm_map(final_clean02,toSpace,"=")
-final_clean02<-tm_map(final_clean02,toSpace,"\n")
-final_clean02<-tm_map(final_clean02,toSpace,"<u+fef>")
-final_clean02<-tm_map(final_clean02,toSpace,"<u+>")
-final_clean02<-tm_map(final_clean02,toSpace,"<ed>")
-final_clean02<-tm_map(final_clean02,toSpace,"<u+bd>")
-final_clean02<-tm_map(final_clean02,toSpace,"<u+b>")
-final_clean02<-tm_map(final_clean02,toSpace,"mmmm")
-
-
-inspect(final_clean[3]) #check the 2nd one (i.e.040418)
-
-#convert to term-document matrix, 'final_clean' has to be a corpus
-class(final_clean02) # a corpus
-tdm02<-TermDocumentMatrix(final_clean02)
-tdm_matrix02<-as.matrix(tdm02)
-
-
-#directly convert corpus into TDM with tf-idf
-tdm_tfidf02<-TermDocumentMatrix(final_clean02,control=list(weighting=function(x) weightTfIdf(x,normalize = FALSE)))
-tdm_tfidf_matrix02<-as.matrix(tdm_tfidf02)
-
-
-##@@@@-------改用DirSource-----------------------------------@@###
-##Finding: each term in termdocumentmatrix for three days has the same frequency
-## doubt that all the mistakes starts from convert the dataframe by using "vectorSource"
-## try to use dirSource as follows:
-
-#1. retrive the message vector from each dataframe
-data00<-page$message
-#data01<-page040418$message #因資料與data00高度重複
-data02<-page050418[201:500,]$message
-data03<-page060418[501:800,]$message
-
-#Note: the following three files will be written into getwd()
-write.csv(data00, file = "data00.csv")
-#write.csv(data01, file = "data01.csv")
-write.csv(data02, file = "data02.csv")
-write.csv(data03, file = "data03.csv")
-
-##FINDING: preview data00,01,02,03，發現data01與data03文字相同
-## all these three are "character"class
-## then ONLY move data00,01,02 files into a created folder named"DATA"
-
-#2. convert it into 'corpus' by using 'DirSource' before cleaning
-final03<-Corpus(DirSource("./DATA"))
-
-#3. clean the data
-final_clean03<-tm_map(final03,removePunctuation,ucp=TRUE)
-final_clean03<-tm_map(final_clean03,stripWhitespace)
-final_clean03<-tm_map(final_clean03,removeNumbers)
-final_clean03<-tm_map(final_clean03,removeWords,stopwords("english"))
-final_clean03<-tm_map(final_clean03,content_transformer(tolower))
-class(final_clean03)
-
-##try tospace, it works
-final_clean03<-tm_map(final_clean03,toSpace,"-")
-final_clean03<-tm_map(final_clean03,toSpace,"=")
-final_clean03<-tm_map(final_clean03,toSpace,"\n")
-final_clean03<-tm_map(final_clean03,toSpace,"<u+fef>")
-final_clean03<-tm_map(final_clean03,toSpace,"<u+>")
-final_clean03<-tm_map(final_clean03,toSpace,"<ed>")
-final_clean03<-tm_map(final_clean03,toSpace,"<u+bd>")
-final_clean03<-tm_map(final_clean03,toSpace,"<u+b>")
-final_clean03<-tm_map(final_clean03,toSpace,"mmmm")
-
-inspect(final_clean03[1])
-
-#convert to term-document matrix, 'final_clean' has to be a corpus
-class(final_clean03) # a corpus
-tdm03<-TermDocumentMatrix(final_clean03)
-tdm_matrix03<-as.matrix(tdm03)
-
-
-#directly convert corpus into TDM with tf-idf
-tdm_tfidf03<-TermDocumentMatrix(final_clean03,control=list(weighting=function(x) weightTfIdf(x,normalize = FALSE)))
-tdm_tfidf_matrix03<-as.matrix(tdm_tfidf03)
-
-
-###Comparison btw using VectorSource and DirSource ####
-#compare 'tdm_tfidf_matrix02'(using VectorSource) and 'tdm_tfidf_matrix03'(using DirSource)
-# the results are similar but not the same

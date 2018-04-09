@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1523007233149.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "556FF2A7",
+    "lastKnownWriteTime" : 13229564426780720,
+    "last_content_update" : 1523007233149,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "79D4154F",
+        "caption" : "tdm_tfidf_matrix02",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=tdm_tfidf_matrix02&cache_key=79D4154F",
+        "displayedObservations" : 3434,
+        "environment" : "",
+        "object" : "tdm_tfidf_matrix02",
+        "preview" : 0,
+        "totalObservations" : 3434,
+        "variables" : 3
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
