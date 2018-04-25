@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1524380056354.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3384057397",
+    "id" : "F131F5F9",
+    "lastKnownWriteTime" : 1524493426,
+    "last_content_update" : 1524493426509,
+    "path" : "D:/GitHub/R parser practice/R parser practice code.R",
+    "project_path" : "R parser practice code.R",
+    "properties" : {
+        "cursorPosition" : "23,0",
+        "scrollLine" : "17",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}

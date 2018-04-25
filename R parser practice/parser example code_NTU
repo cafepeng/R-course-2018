@@ -1,0 +1,98 @@
+######  獎學金爬蟲程式  #####
+
+### 一、環境建立
+
+## 1.安裝套件
+install.packages("XML")
+install.packages("Rcurl")
+install.packages("httr")
+
+## 2.導入套件
+library(XML)
+library(RCurl)
+library(httr)
+
+### 二、爬蟲
+
+## 1.獎學金一覽表格的網址
+  url_head <- "http://advisory.osa.ntu.edu.tw/CustomerSet/207_NTUactive/u_active_v1.asp?scholarship_skeyword=%E8%AB%8B%E8%BC%B8%E5%85%A5%E9%97%9C%E9%8D%B5%E5%AD%97&ssc_sat=&PageNo="
+  url_tail <- "&id={6744E5C6-790F-420F-A4B8-07F425A5C771}"
+
+ #建立一個存放網址的向量，命名為"all_url"
+  all_url<-c() 
+  #頁碼(n)迴圈
+  for(n in 1:2){   
+     #將url_head與頁碼(n)相接，存在url
+     url<-paste(url_head ,n,sep = "" ) 
+     #將url(url_head+頁碼)與url_tail相接，存在url
+     url<-paste(url,url_tail ,sep = "" ) 
+     #將url存在all_url的第n個位置
+     all_url[n] <- url 
+     }
+ 
+## 2.爬取獎學金一覽表格內容超連結網址
+  #將印出的內容存成alltable_url變數
+  alltable_url <- capture.output(  
+  #獎學金一覽表格的網址(all_url)迴圈
+  for( k in 1:2){
+    #獲取各頁一覽表html原始碼，並存成temp變數
+    temp    <- getURL(all_url[k], .encoding = "UTF-8")
+    #將html轉成xml
+    xmldoc  <- htmlParse(temp)
+    #選取超連結字串
+    path    <- xpathSApply(xmldoc,"//td[@align=\"left\"]/a//@href")
+    #網址前端
+    suburlpath <- "http://advisory.osa.ntu.edu.tw/CustomerSet/207_NTUactive/" 
+    #連結超連結字串並印出
+    print(paste(suburlpath ,path ,sep = "" ))
+    }
+  )
+  #整理網址
+  #去除前端6個字元
+  alltable_url <- substring(alltable_url,6)
+  #去除\
+  alltable_url <- gsub("\"","",alltable_url)
+  
+  
+## 3.利用迴圈取得每一則內文
+  #將印出的內容存成alltabledata變數
+  alltabledata<-capture.output(
+  #獎學金內容網址迴圈
+  for (u in 1:length(alltable_url) ){  #根據前面超連結數
+    #獲取各頁一覽表html原始碼，並存成content變數
+    content<- getURL(alltable_url[u], .encoding = "UTF-8")
+    #將html轉成xml
+    xmldoc2<- htmlParse(content)
+    #選取內文字串
+    data   <- xpathSApply(xmldoc2,"//td[@align=\"left\"]", xmlValue)
+    #印出內文
+    print(data)
+    }
+  )
+   
+## 4.整理內文 
+  #去除n
+  alltabledata <- gsub("n", "", alltabledata)
+  #去除r
+  alltabledata <- gsub("r", "", alltabledata)
+  #去除\\
+  alltabledata <- gsub("[\\]", "", alltabledata)
+  #去除前端6個字元
+  alltabledata <- substring(alltabledata,6)
+  #去除\
+  alltabledata <- gsub("\"","",alltabledata)
+  
+## 5.獎學金整理表
+ #將資料存成20行、11欄的矩陣
+ alltabledata <- matrix(alltabledata,20,11,byrow=TRUE)
+ #去除第一欄無用文字
+ alltabledata <- alltabledata[,-1] 
+ #設定欄位名稱
+ colnames(alltabledata) <- c("類別名稱","申請日期","獎學金名稱","申請地點","附加檔案","獎學金金額","獎學金名額","申請對象","申請資格","繳交文件")
+ #匯成csv 檔
+ write.csv(alltabledata,"table.csv")
+
+
+
+
+3099
